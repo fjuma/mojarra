@@ -423,7 +423,7 @@ public final class FactoryFinder {
      * @throws FacesException if the web application class loader
      *                        cannot be identified
      */
-    public static void releaseFactories() throws FacesException {
+    public static synchronized void releaseFactories() throws FacesException {
 
         // Identify the web application class loader
         ClassLoader cl = getClassLoader();
