@@ -44,6 +44,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.GZIPInputStream;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -195,7 +196,7 @@ public class ServerSideStateHelper extends StateHelper {
                       (Map) sessionMap
                             .get(LOGICAL_VIEW_MAP), String.class, Map.class);
                 if (logicalMap == null) {
-                    logicalMap = new LRUMap<String, Map>(numberOfLogicalViews);
+                    logicalMap = Collections.synchronizedMap(new LRUMap<String, Map>(numberOfLogicalViews));
                     sessionMap.put(LOGICAL_VIEW_MAP, logicalMap);
                 }
 
